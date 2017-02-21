@@ -1,7 +1,27 @@
-#This function symlinks all files from source_dir to target_dir
-#Note: if symlink exists in target_dir the function will remove the link and
-#create a new one, if file exists in the target_dir the function will promt that
-#the file exists and do nothing.
+# SETTINGS
+# Enable programmable completion features
+if [ -f /usr/local/etc/bash_completion ]; then
+   . /usr/local/etc/bash_completion
+fi
+
+# Set the default editor to vim.
+export EDITOR=vim
+
+# Avoid succesive duplicates in the bash command history.
+export HISTCONTROL=ignoredups
+
+# Append commands to the bash command history file (~/.bash_history)
+# instead of overwriting it.
+shopt -s histappend
+
+# Add bash aliases
+if [ -f ~/.bash_aliases ]; then
+    source ~/.bash_aliases
+fi
+
+# FUNCTIONS
+# Symlink all files from source_dir to target_dir
+# Note: if symlink exists overwrite the link, if file exists do noting
 symlink_files () {
   source_dir=$1
   target_dir=$2
